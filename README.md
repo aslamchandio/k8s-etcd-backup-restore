@@ -1,4 +1,4 @@
-# Backup and restore etcd cluster on Kubernetes
+# Backup and restore etcd on Kubernetes Cluster
 
 
 ## What this does?
@@ -22,7 +22,7 @@ etcdctl version
 
 If etcdctl is installed, you will see an output like the one above, if not it will give a `command not found `error.
 
-### Install ETCDCTL & ETCDUTL on Master Node or Admin Node
+### Install ETCDCTL & ETCDUTL on Master Node
 ```
 sudo apt  install etcd-client -y
 
@@ -222,6 +222,12 @@ sudo mv * ./..
 ls -al my-dir/
 
 sudo rm -rf my-dir/
+
+```
+
+Let’s verify that we restored the snapshot successfully by checking the pods in the default namespace. As you can remember we took the snapshot with no pods but then we created a pod with the name of newpod. If newpod is still here, then we failed to restore from the backup. If there is no pod in the default namespace, then we successfully restored from the back up.
+
+```
 
 k get pods -n kube-system
 
